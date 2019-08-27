@@ -19,9 +19,9 @@
     * add(Object)
     * addAll(Collection)
 - [ ] remove
-    * remove(index)
-    * remove(Object)
-    * remove(Collection)
+   - [X] remove(index)
+   - [X] remove(Object)
+   - [ ] remove(Collection)
 - [ ] contains
     * contains(Object)
     * containsAll(Collection)

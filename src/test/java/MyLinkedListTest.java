@@ -1,6 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -61,6 +62,25 @@ public class MyLinkedListTest {
         assertThat(myLinkedList.size()).isEqualTo(6);
         assertThat(myLinkedList.get(3)).isEqualTo("specialElement2");
         assertThat(myLinkedList.get(4)).isEqualTo("element2");
+    }
+
+    @Test
+    public void testMyLinkedListRemove() {
+        myLinkedList.remove("element1");
+        assertThat(myLinkedList.size()).isEqualTo(3);
+        assertThat(myLinkedList.get(1)).isEqualTo("element2");
+        myLinkedList.remove(1);
+        assertThat(myLinkedList.get(1)).isEqualTo("element3");
+    }
+
+    @Test
+    public void testMyLinkedListRemoveAll() {
+        List removeList = new ArrayList();
+        removeList.add("element0");
+        removeList.add("element1");
+        myLinkedList.remove(removeList);
+        assertThat(myLinkedList.size()).isEqualTo(2);
+        assertThat(myLinkedList.get(1)).isEqualTo("element3");
     }
 
 }
