@@ -94,16 +94,26 @@ public class MyLinkedList<E> implements List<E> {
         return previousSize + 1 == size;
     }
 
-    @Override
-    public boolean remove(Object element) {
+    public boolean removeFirst() {
+        int previousSize = size;
+        head = head.next;
+        return previousSize == size + 1;
+    }
+
+    public boolean remove (Object element) {
+        return removeLast(element);
+    }
+
+    public boolean removeLast(Object element) {
 
         Node temp = head;
         Node previous = head;
+        int previousSize = size;
         for(int i = 0; i < size; i++){
             if(head.data == element){
                 head = head.next;
                 size--;
-                return true;
+                return previousSize == size + 1;
             }
             if(temp.data == element){
                 previous.next = temp.next;
@@ -112,7 +122,7 @@ public class MyLinkedList<E> implements List<E> {
             previous = temp;
             temp = temp.next;
         }
-        return true;
+        return previousSize == size + 1;
     }
 
     @Override
@@ -191,7 +201,7 @@ public class MyLinkedList<E> implements List<E> {
         }
         Node<E> node;
         node = getNode(index - 1);
-        node. next = new Node<>(element, node.next);
+        node.next = new Node<>(element, node.next);
         size++;
     }
 
