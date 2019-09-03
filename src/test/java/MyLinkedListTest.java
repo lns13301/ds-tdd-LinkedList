@@ -75,9 +75,11 @@ public class MyLinkedListTest {
 
     @Test
     public void testMyLinkedListRemoveAll() {
-        List removeList = new ArrayList();
-        removeList.add("element0");
+        List removeList = new MyLinkedList();
+        assertThat(myLinkedList.size()).isEqualTo(4);
         removeList.add("element1");
+        removeList.add("element2");
+        assertThat(removeList.size()).isEqualTo(2);
         myLinkedList.remove(removeList);
         assertThat(myLinkedList.size()).isEqualTo(2);
         assertThat(myLinkedList.get(1)).isEqualTo("element3");

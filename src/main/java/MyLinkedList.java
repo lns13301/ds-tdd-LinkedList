@@ -96,15 +96,23 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean remove(Object element) {
-        int previousSize = size;
 
+        Node temp = head;
+        Node previous = head;
         for(int i = 0; i < size; i++){
-            if(getNode(i).data.equals(element)){
-                getNode(i-1).next = getNode(i).next;
+            if(head.data == element){
+                head = head.next;
+                size--;
+                return true;
+            }
+            if(temp.data == element){
+                previous.next = temp.next;
                 size--;
             }
+            previous = temp;
+            temp = temp.next;
         }
-        return previousSize == size - 1;
+        return true;
     }
 
     @Override
@@ -133,9 +141,10 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean removeAll(Collection<?> c) {
         boolean flag = true;
+
         for(Object element : c){
-            remove(element);
-        }
+            flag &= remove(element);
+        };
         return flag;
     }
 
@@ -188,7 +197,12 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        getNode(index-1).next = getNode(index).next;
+        if(index == 0){
+            head = head.next;
+        }
+        else {
+            getNode(index-1).next = getNode(index).next;
+        }
         return getNode(index).data;
     }
 
