@@ -85,4 +85,18 @@ public class MyLinkedListTest {
         assertThat(myLinkedList.get(1)).isEqualTo("element3");
     }
 
+    @Test
+    public void testMyLinkedListRemoveFirst() {
+        myLinkedList.removeFirst();
+        myLinkedList.removeFirst();
+        assertThat(myLinkedList.get(0)).isEqualTo("element2");
+        assertThat(myLinkedList.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void testMyLinkedListRemoveLast() {
+        myLinkedList.removeLast();
+        myLinkedList.removeLast();
+        assertThat(myLinkedList.size()).isEqualTo(2);
+    }
 }

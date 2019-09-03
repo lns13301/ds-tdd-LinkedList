@@ -97,15 +97,11 @@ public class MyLinkedList<E> implements List<E> {
     public boolean removeFirst() {
         int previousSize = size;
         head = head.next;
+        size--;
         return previousSize == size + 1;
     }
 
     public boolean remove (Object element) {
-        return removeLast(element);
-    }
-
-    public boolean removeLast(Object element) {
-
         Node temp = head;
         Node previous = head;
         int previousSize = size;
@@ -123,6 +119,15 @@ public class MyLinkedList<E> implements List<E> {
             temp = temp.next;
         }
         return previousSize == size + 1;
+    }
+
+    public boolean removeLast() {
+        if(size < 1){
+            return false;
+        }
+        tail = getNode(size-1);
+        size--;
+        return true;
     }
 
     @Override
