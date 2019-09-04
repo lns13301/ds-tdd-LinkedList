@@ -80,11 +80,6 @@ public class MyLinkedList<E> implements List<E> {
     }
 
     @Override
-    public <T> T[] toArray(IntFunction<T[]> generator) {
-        return null;
-    }
-
-    @Override
     public boolean add(E e) {
         int previousSize = size;
         if(size == 0){
@@ -99,9 +94,40 @@ public class MyLinkedList<E> implements List<E> {
         return previousSize + 1 == size;
     }
 
-    @Override
-    public boolean remove(Object o) {
-        return false;
+    public boolean removeFirst() {
+        int previousSize = size;
+        head = head.next;
+        size--;
+        return previousSize == size + 1;
+    }
+
+    public boolean remove (Object element) {
+        Node temp = head;
+        Node previous = head;
+        int previousSize = size;
+        for(int i = 0; i < size; i++){
+            if(head.data == element){
+                head = head.next;
+                size--;
+                return previousSize == size + 1;
+            }
+            if(temp.data == element){
+                previous.next = temp.next;
+                size--;
+            }
+            previous = temp;
+            temp = temp.next;
+        }
+        return previousSize == size + 1;
+    }
+
+    public boolean removeLast() {
+        if(size < 1){
+            return false;
+        }
+        tail = getNode(size-1);
+        size--;
+        return true;
     }
 
     @Override
@@ -129,7 +155,12 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean flag = true;
+
+        for(Object element : c){
+            flag &= remove(element);
+        };
+        return flag;
     }
 
     @Override
@@ -175,13 +206,19 @@ public class MyLinkedList<E> implements List<E> {
         }
         Node<E> node;
         node = getNode(index - 1);
-        node. next = new Node<>(element, node.next);
+        node.next = new Node<>(element, node.next);
         size++;
     }
 
     @Override
     public E remove(int index) {
-        return null;
+        if(index == 0){
+            head = head.next;
+        }
+        else {
+            getNode(index-1).next = getNode(index).next;
+        }
+        return getNode(index).data;
     }
 
     @Override
